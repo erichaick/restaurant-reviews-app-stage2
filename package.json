@@ -1,0 +1,29 @@
+{
+  "name": "mws-restaurant-stage-2",
+  "version": "1.0.0",
+  "description": "Mobile Web Specialist Stage 2 Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomekmy/mws-restaurant-stage-2.git"
+  },
+  "author": "Tomasz Myśliwiec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomekmy/mws-restaurant-stage-2/issues"
+  },
+  "homepage": "https://github.com/tomekmy/mws-restaurant-stage-2#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-uglify-es": "^1.0.4"
+  },
+  "dependencies": {
+    "gulp-htmlmin": "^4.0.0",
+    "run-sequence": "^2.2.1"
+  }
+}
