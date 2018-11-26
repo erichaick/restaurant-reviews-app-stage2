@@ -1,5 +1,5 @@
 {
-  "name": "mws-restaurant-stage-2",
+  "name": "restaurant-reviews-app-stage2",
   "version": "0.0.0",
   "description": "> A restaurant app leveraging offline capabilities 🍕",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kristof0425/mws-restaurant-stage-2.git"
+    "url": "git+https://github.com/erichaick/restaurant-reviews-app-stage2.git"
   },
   "author": "Kristof Dombi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kristof0425/mws-restaurant-stage-2/issues"
+    "url": "https://github.com/erichaick/restaurant-reviews-app-stage2/issues"
   },
-  "homepage": "https://github.com/kristof0425/mws-restaurant-stage-2#readme",
+  "homepage": "https://github.com/erichaick/restaurant-reviews-app-stage2#readme",
   "devDependencies": {
     "browser-sync": "^2.24.6",
     "gulp": "^3.9.1",
@@ -27,7 +27,5 @@
     "gulp-webserver": "^0.9.1",
     "imagemin-pngquant": "^6.0.0"
   },
-  "dependencies": {
-    "lozad": "^1.5.0"
-  }
+  "dependencies": {}
 }

@@ -6,9 +6,6 @@ let restaurants,
 var map;
 var markers = [];
 
-const imgObserver = window.lozad();
-imgObserver.observe();
-
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -156,7 +153,6 @@ const createRestaurantHTML = restaurant => {
   image.className = "restaurant-img lozad";
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
-  imgObserver.observe();
 
   const name = document.createElement("h2");
   name.className = "restaurant-name";
