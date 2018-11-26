@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/erichaick/restaurant-reviews-app-stage2#readme",
   "devDependencies": {
-    "browser-sync": "^2.24.6",
+    "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.4",
     "gulp-imagemin": "^4.1.0",
