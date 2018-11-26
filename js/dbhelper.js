@@ -1,5 +1,7 @@
 import idb from "./idb.js";
 
+// window.lazySizesConfig = window.lazySizesConfig || {};
+// window.lazySizesConfig.expand = 20;
 /**
  * Common database helper functions.
  */
