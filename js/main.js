@@ -150,7 +150,7 @@ const createRestaurantHTML = restaurant => {
   li.className = "restaurant-item";
 
   const image = document.createElement("img");
-  image.className = "restaurant-img lozad";
+  image.className = "restaurant-img";
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   li.append(image);
 

@@ -4,8 +4,6 @@ import {imgAlts} from "./utils.js";
 let restaurant;
 var map;
 
-const imgObserver = window.lozad();
-imgObserver.observe();
 
 /**
  * Get a parameter by name from page URL.
