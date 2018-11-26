@@ -25,9 +25,7 @@ export default class DBHelper {
       return Promise.resolve();
     }
     return idb.open(IDB_DATABASE, 1, upgradeDatabase => {
-      const store = upgradeDatabase.createObjectStore(IDB_OBJECT, {
-        keyPath: "id"
-      });
+      const store = upgradeDatabase.createObjectStore(IDB_OBJECT, {keyPath: "id"});
       store.createIndex("by-id", "id");
     });
   }
@@ -36,33 +34,34 @@ export default class DBHelper {
    * Save data to IDB database
    */
   static saveToIDB(data) {
-    return DBHelper.openIDBConnection().then(db => {
-      if (!db) {
-        return;
-      }
-      const tx = db.transaction(IDB_OBJECT, "readwrite");
-      const store = tx.objectStore(IDB_OBJECT);
-      data.forEach(restaurant => {
-        store.put(restaurant);
+    return DBHelper
+      .openIDBConnection()
+      .then(db => {
+        if (!db) {
+          return;
+        }
+        const tx = db.transaction(IDB_OBJECT, "readwrite");
+        const store = tx.objectStore(IDB_OBJECT);
+        data.forEach(restaurant => {
+          store.put(restaurant);
+        });
+        return tx.complete;
       });
-      return tx.complete;
-    });
   }
 
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurantsFromAPI() {
-    return fetch(DBHelper.DATABASE_URL).then(res =>
-      res.json().then(restaurants => {
-        DBHelper.saveToIDB(restaurants);
-        return restaurants;
-      })
-    );
+    return fetch(DBHelper.DATABASE_URL).then(res => res.json().then(restaurants => {
+      DBHelper.saveToIDB(restaurants);
+      return restaurants;
+    }));
   }
 
   static async fetchRestaurants(cb) {
-    return DBHelper.fetchCachedRestaurants()
+    return DBHelper
+      .fetchCachedRestaurants()
       .then(restaurants => {
         if (restaurants.length) {
           return Promise.resolve(restaurants);
@@ -82,13 +81,17 @@ export default class DBHelper {
    * Get cached restaurants from IDB.
    */
   static fetchCachedRestaurants() {
-    return DBHelper.openIDBConnection().then(db => {
-      if (!db) {
-        return;
-      }
-      const store = db.transaction(IDB_OBJECT).objectStore(IDB_OBJECT);
-      return store.getAll();
-    });
+    return DBHelper
+      .openIDBConnection()
+      .then(db => {
+        if (!db) {
+          return;
+        }
+        const store = db
+          .transaction(IDB_OBJECT)
+          .objectStore(IDB_OBJECT);
+        return store.getAll();
+      });
   }
 
   /**
@@ -147,11 +150,7 @@ export default class DBHelper {
   /**
    * Fetch restaurants by a cuisine and a neighborhood with proper error handling.
    */
-  static fetchRestaurantByCuisineAndNeighborhood(
-    cuisine,
-    neighborhood,
-    callback
-  ) {
+  static fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, callback) {
     // Fetch all restaurants
     DBHelper.fetchRestaurants((error, restaurants) => {
       if (error) {
@@ -181,13 +180,9 @@ export default class DBHelper {
         callback(error, null);
       } else {
         // Get all neighborhoods from all restaurants
-        const neighborhoods = restaurants.map(
-          (v, i) => restaurants[i].neighborhood
-        );
+        const neighborhoods = restaurants.map((v, i) => restaurants[i].neighborhood);
         // Remove duplicates from neighborhoods
-        const uniqueNeighborhoods = neighborhoods.filter(
-          (v, i) => neighborhoods.indexOf(v) == i
-        );
+        const uniqueNeighborhoods = neighborhoods.filter((v, i) => neighborhoods.indexOf(v) == i);
         callback(null, uniqueNeighborhoods);
       }
     });
@@ -205,9 +200,7 @@ export default class DBHelper {
         // Get all cuisines from all restaurants
         const cuisines = restaurants.map((v, i) => restaurants[i].cuisine_type);
         // Remove duplicates from cuisines
-        const uniqueCuisines = cuisines.filter(
-          (v, i) => cuisines.indexOf(v) == i
-        );
+        const uniqueCuisines = cuisines.filter((v, i) => cuisines.indexOf(v) == i);
         callback(null, uniqueCuisines);
       }
     });
@@ -234,13 +227,15 @@ export default class DBHelper {
    * Map marker for a restaurant.
    */
   static mapMarkerForRestaurant(restaurant, map) {
-    const marker = new google.maps.Marker({
-      position: restaurant.latlng,
-      title: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant),
-      map: map,
-      animation: google.maps.Animation.DROP
-    });
+    const marker = new google
+      .maps
+      .Marker({
+        position: restaurant.latlng,
+        title: restaurant.name,
+        url: DBHelper.urlForRestaurant(restaurant),
+        map: map,
+        animation: google.maps.Animation.DROP
+      });
     return marker;
   }
 }

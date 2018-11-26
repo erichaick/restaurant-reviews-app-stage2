@@ -1,5 +1,5 @@
 import DBHelper from "./dbhelper.js";
-import { imgAlts } from "./utils.js";
+import {imgAlts} from "./utils.js";
 
 let restaurant;
 var map;
@@ -11,12 +11,15 @@ imgObserver.observe();
  * Get a parameter by name from page URL.
  */
 const getParameterByName = (name, url) => {
-  if (!url) url = window.location.href;
+  if (!url) 
+    url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");
   const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
     results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return "";
+  if (!results) 
+    return null;
+  if (!results[2]) 
+    return "";
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
@@ -56,11 +59,13 @@ window.initMap = (() => {
       // Got an error!
       console.error(error);
     } else {
-      self.map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 16,
-        center: restaurant.latlng,
-        scrollwheel: false
-      });
+      self.map = new google
+        .maps
+        .Map(document.getElementById("map"), {
+          zoom: 16,
+          center: restaurant.latlng,
+          scrollwheel: false
+        });
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
@@ -98,9 +103,7 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
 /**
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
-const fillRestaurantHoursHTML = (
-  operatingHours = self.restaurant.operating_hours
-) => {
+const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById("restaurant-hours");
   for (let key in operatingHours) {
     const row = document.createElement("tr");
